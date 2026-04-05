@@ -1,0 +1,17 @@
+# 1) Ensure __Visual Studio__ is closed (or stop devenv process)
+Stop-Process -Name devenv -ErrorAction SilentlyContinue
+
+# 2) Create the .gitignore (if not already created). You can paste the file above into .gitignore
+# (or save it using your editor)
+
+# 3) Add .gitignore and remove tracked .vs files from the index
+git add .gitignore
+git rm -r --cached ".vs"  # remove any tracked .vs files from the index
+
+# 4) Take ownership and grant permissions to the VSIndex file
+takeown /f ".vs\Medical Diagnosis app.slnx\FileContentIndex\358d7e54-4c2e-41e3-90d9-82897af6e990.vsidx"
+icacls ".vs\Medical Diagnosis app.slnx\FileContentIndex\358d7e54-4c2e-41e3-90d9-82897af6e990.vsidx" /grant "$env:USERNAME:F"
+
+# 5) Stage remaining files and commit
+git add .
+git commit -m "Add .gitignore and ignore Visual Studio .vs folder"
