@@ -1,5 +1,5 @@
 def main():
-    print("Hello from clinisight!")
+    print("Hello from medical-diagnosis-app!")
 
 
 if __name__ == "__main__":
